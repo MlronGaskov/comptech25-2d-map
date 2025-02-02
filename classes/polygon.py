@@ -8,7 +8,7 @@ def _find_start_point(points: List[Point]) -> int:
     return max(range(len(points)), key=lambda idx: (points[idx].x, points[idx].y))
 
 
-def _cross_product(A: Point, B: Point, C: Point) -> float:
+def _cross_product(A: Point, B: Point, C: Point) -> int:
     """
     Computes the cross product to determine orientation.
     If result > 0 → counterclockwise (CCW).
@@ -54,17 +54,11 @@ class Polygon:
             vector = Vector(B.x - A.x, B.y - A.y)
             vectors.append(vector)
 
-        #first_length = vectors[0].length()
-        #scale_factor = 1 / first_length
-
-        #for i in range(0, len(vectors)):
-        #    vectors[i] = vectors[i].scale(scale_factor)
-
         return vectors
 
     def __eq__(self, other: "Polygon") -> bool:
         """Checks if two polygons are equivalent."""
-        if not isinstance(other, Polygon) or len(self.points) != len(other.points):
+        if not isinstance(other, Polygon):
             return False
 
         v1 = self.get_type()

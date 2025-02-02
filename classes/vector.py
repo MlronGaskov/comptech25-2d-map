@@ -4,7 +4,7 @@ from math import sqrt
 class Vector:
     """Represents a 2D vector with float components."""
 
-    def __init__(self, x: float, y: float):
+    def __init__(self, x: int, y: int):
         self.x = x
         self.y = y
 
@@ -15,11 +15,6 @@ class Vector:
         """Returns the length (magnitude) of the vector."""
         return sqrt(self.x ** 2 + self.y ** 2)
 
-    def scale(self, factor: float):
-        """Scales the vector by a given factor."""
-        return Vector(self.x * factor, self.y * factor)
-
     def __eq__(self, other: "Vector") -> bool:
-        """Checks if two vectors are equivalent with a small margin of error."""
-        d = Vector(self.x - other.x, self.y - other.y)
-        return d.length() < 0.001
+        """Checks if two vectors are equivalent."""
+        return other.x == self.x and other.y == self.y

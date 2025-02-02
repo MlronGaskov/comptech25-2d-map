@@ -11,13 +11,22 @@ class Map2D:
         self.polygons = []
 
         with open(filename, "r") as file:
-            for line in file:
+            lines = file.readlines()
+            index = 1
+
+            num_polygons = int(lines[0].strip())
+            for _ in range(num_polygons):
+                num_points = int(lines[index].strip())
+                index += 1
+
                 points = []
-                point_strings = line.strip().split(";")
-                for point_str in point_strings:
-                    x, y = map(float, point_str.split(","))
+                for _ in range(num_points):
+                    x, y = map(int, lines[index].strip().split())
                     points.append(Point(x, y))
+                    index += 1
+
                 self.polygons.append(Polygon(points))
 
     def __repr__(self):
         return f"Map2D({self.polygons})"
+

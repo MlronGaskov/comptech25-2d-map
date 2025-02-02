@@ -20,6 +20,6 @@ class MapVisualizer:
 
 
 map_2d = Map2D()
-map_2d.load_from_file("./map-examples/map-example4.txt")
+map_2d.load_from_file("./map-examples/test5.txt")
 
 MapVisualizer.draw(map_2d)
