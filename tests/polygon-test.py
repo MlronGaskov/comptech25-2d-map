@@ -1,4 +1,6 @@
 import unittest
+
+from classes.map2d import Map2D
 from classes.point import Point
 from classes.polygon import Polygon
 
@@ -64,6 +66,48 @@ class TestPolygon(unittest.TestCase):
         poly2 = Polygon([Point(1, 1), Point(3, 1), Point(3, 3)])  # Треугольник
 
         self.assertNotEqual(poly1, poly2)
+
+    def test_polygon_equivalence_0(self):
+        map_2d = Map2D()
+        map_2d.load_from_file("../map-examples/test0.txt")
+        for i in range(len(map_2d.polygons)):
+            for j in range(i, len(map_2d.polygons)):
+                self.assertEqual(map_2d.polygons[i], map_2d.polygons[j])
+
+    def test_polygon_equivalence_1(self):
+        map_2d = Map2D()
+        map_2d.load_from_file("../map-examples/test1.txt")
+        for i in range(len(map_2d.polygons)):
+            for j in range(i, len(map_2d.polygons)):
+                self.assertEqual(map_2d.polygons[i], map_2d.polygons[j])
+
+    def test_polygon_equivalence_2(self):
+        map_2d = Map2D()
+        map_2d.load_from_file("../map-examples/test2.txt")
+        for i in range(len(map_2d.polygons)):
+            for j in range(i, len(map_2d.polygons)):
+                self.assertEqual(map_2d.polygons[i], map_2d.polygons[j])
+
+    def test_polygon_equivalence_3(self):
+        map_2d = Map2D()
+        map_2d.load_from_file("../map-examples/test3.txt")
+        for i in range(len(map_2d.polygons)):
+            for j in range(i, len(map_2d.polygons)):
+                self.assertEqual(map_2d.polygons[i], map_2d.polygons[j])
+
+    def test_polygon_equivalence_4(self):
+        map_2d = Map2D()
+        map_2d.load_from_file("../map-examples/test4.txt")
+        for i in range(len(map_2d.polygons)):
+            for j in range(i, len(map_2d.polygons)):
+                self.assertEqual(map_2d.polygons[i], map_2d.polygons[j])
+
+    def test_polygon_equivalence_5(self):
+        map_2d = Map2D()
+        map_2d.load_from_file("../map-examples/test5.txt")
+        for i in range(len(map_2d.polygons)):
+            for j in range(i, len(map_2d.polygons)):
+                self.assertEqual(map_2d.polygons[i], map_2d.polygons[j])
 
 
 if __name__ == "__main__":
