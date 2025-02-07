@@ -1,16 +1,16 @@
-from typing import List, Dict
+from typing import List
 import matplotlib.pyplot as plt
 import random
 from shapely.geometry import Polygon as ShapelyPolygon
 
+from classes.compression import read_compressed_map_from_file
 from classes.groups import group_polygons
 from classes.polygon import Polygon, load
 
 
 class Visualizer:
     @staticmethod
-    def draw_polygons(filename: str):
-        polygons: List[Polygon] = load(filename)
+    def draw_polygons(polygons: List[Polygon]):
 
         fig, ax = plt.subplots()
 
@@ -24,8 +24,8 @@ class Visualizer:
         plt.show()
 
     @staticmethod
-    def draw_groups(filename: str):
-        polygons: List[Polygon] = load(filename)
+    def draw_groups(polygons: List[Polygon]):
+
         groups = group_polygons(polygons)
 
         fig, ax = plt.subplots()
@@ -47,4 +47,5 @@ class Visualizer:
 
 
 if __name__ == '__main__':
-    Visualizer.draw_groups("./map-examples/test5.txt")
+    Visualizer.draw_groups(load("./map-examples/test6.txt"))
+    Visualizer.draw_groups(read_compressed_map_from_file("./compressed/test6.txt").get_polygons())

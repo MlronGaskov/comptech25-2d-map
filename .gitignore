@@ -18,3 +18,5 @@ pip-delete-this-directory.txt
 .env
 *.env
 .env.*
+compressed
+map-examples
