@@ -1,5 +1,7 @@
 import string
-from typing import List, Dict, Set
+from typing import List, Dict
+
+from multiset import Multiset
 
 from classes.compression import read_compressed_map_from_file
 from classes.polygon import load, Polygon, Point
@@ -10,11 +12,11 @@ def compare_polygons(expected: List[Polygon], polygons: List[Polygon]):
     if len(expected) != len(polygons):
         return False
     pool: PolygonPrototypesPool = PolygonPrototypesPool()
-    polygons_dict: Dict[Point, Set[PolygonPrototype]] = {}
+    polygons_dict: Dict[Point, Multiset[PolygonPrototype]] = {}
     for polygon in expected:
         prototype = pool.get_prototype(polygon)
         if polygon.points[0] not in polygons_dict:
-            polygons_dict[polygon.points[0]] = set()
+            polygons_dict[polygon.points[0]] = Multiset()
         polygons_dict[polygon.points[0]].add(prototype)
 
     for polygon in polygons:
@@ -23,7 +25,7 @@ def compare_polygons(expected: List[Polygon], polygons: List[Polygon]):
             return False
         if prototype not in polygons_dict[polygon.points[0]]:
             return False
-        polygons_dict[polygon.points[0]].remove(prototype)
+        polygons_dict[polygon.points[0]].remove(prototype, 1)
     return True
 
 
